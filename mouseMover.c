@@ -44,39 +44,24 @@ void Servo_Task(void *pvParameter)
         .timer_sel = LEDC_TIMER_0
     };
     ledc_channel_config(&ledc_channel);
-
-    // for(;;)
-    // {
-    //     ESP_LOGI(TAG, "START rotation - right.");
-    //     ledc_set_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0, angle_to_duty_cycle(80));
-    //     ledc_update_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0);
-    //     vTaskDelay(pdMS_TO_TICKS(3000));
-    //     ESP_LOGI(TAG, "START rotation left.");
-    //     ledc_set_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0, angle_to_duty_cycle(10));
-    //     ledc_update_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0);
-    //     vTaskDelay(pdMS_TO_TICKS(3000));
-    //     ESP_LOGI(TAG, "STOP rotation.");
-    //     ledc_set_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0, angle_to_duty_cycle(90));
-    //     ledc_update_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0);
-    //     vTaskDelay(pdMS_TO_TICKS(4000));
-    // }
+    
     for(;;)
-{
-    ESP_LOGI(TAG, "START rotation - right.");
-    ledc_set_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0, angle_to_duty_cycle(80));
-    ledc_update_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0);
-    vTaskDelay(pdMS_TO_TICKS(2000));
-
-    ESP_LOGI(TAG, "START rotation left.");
-    ledc_set_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0, angle_to_duty_cycle(100));
-    ledc_update_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0);
-    vTaskDelay(pdMS_TO_TICKS(2000));
-
-    ESP_LOGI(TAG, "STOP rotation.");
-    ledc_set_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0, angle_to_duty_cycle(90)); // střed
-    ledc_update_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0);
-    vTaskDelay(pdMS_TO_TICKS(40000));
-}
+    {
+        ESP_LOGI(TAG, "START rotation - right.");
+        ledc_set_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0, angle_to_duty_cycle(80));
+        ledc_update_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0);
+        vTaskDelay(pdMS_TO_TICKS(2000));
+    
+        ESP_LOGI(TAG, "START rotation - left.");
+        ledc_set_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0, angle_to_duty_cycle(100));
+        ledc_update_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0);
+        vTaskDelay(pdMS_TO_TICKS(2000));
+    
+        ESP_LOGI(TAG, "STOP rotation.");
+        ledc_set_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0, angle_to_duty_cycle(90)); // střed
+        ledc_update_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0);
+        vTaskDelay(pdMS_TO_TICKS(40000));
+    }
 }
 
 uint32_t angle_to_duty_cycle(uint8_t angle)
